@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Author & DevPulse • Ifran Tuhin{% endblock %}
+
+{% block content %}
+<!-- About Hero Section -->
+<section class="about-hero">
+  <div class="container">
+    <span class="badge badge-primary badge-glow">About The Creator</span>
+    <h1 class="hero-title" style="margin-top: 1rem;">
+      Behind The <span class="gradient-text">Screen</span> & The Code
+    </h1>
+    <p class="hero-desc">
+      A journey through software architecture, full-stack craft, and a mission to make web engineering more accessible, maintainable, and visually stunning.
+    </p>
+  </div>
+</section>
+
+<!-- Author Profile Spotlight Card -->
+<section class="container">
+  <div class="about-profile-card">
+    <div class="avatar-wrapper">
+      <div class="avatar-large">
+        <div class="avatar-inner">
+          <img src="{% static 'images/images.jpg' %}" 
+               alt="Ifran Tuhin" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span style="display: none; align-items: center; justify-content: center; width: 100%; height: 100%;">IT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-details">
+      <span class="badge badge-accent">Lead Author & Architect</span>
+      <h2 style="margin-top: 0.5rem;">{{ author.name|default:"Ifran Tuhin" }}</h2>
+      <p class="profile-role">{{ author.title|default:"Full-Stack Software Engineer & Tech Creator" }}</p>
+      
+      <p class="profile-bio">
+        Welcome to our blog! We share in-depth insights, architectural best practices, and hands-on stories across modern web technologies, Python, Django, and responsive interface design. Our goal is to empower developers with battle-tested patterns they can implement in real-world products immediately.
+      </p>
+
+      <div class="social-links">
+        <a href="https://github.com" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+        <a href="mailto:contact@devpulse.io" class="social-btn" title="Direct Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Impact / Numbers Grid -->
+<section class="container">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">{{ author.articles_count|default:"50+" }}</div>
+      <div class="stat-label">Published Articles</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">{{ author.readers_count|default:"18K+" }}</div>
+      <div class="stat-label">Monthly Readers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">{{ author.rating|default:"4.9/5" }}</div>
+      <div class="stat-label">Community Rating</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">{{ author.experience_years|default:"4+" }}</div>
+      <div class="stat-label">Years Engineering</div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission & Pillars Grid -->
+<section class="container" style="margin-bottom: 5rem;">
+  <div class="section-header">
+    <div>
+      <span class="badge badge-primary">Guiding Principles</span>
+      <h2 class="section-title" style="margin-top: 0.5rem;">Why This Blog Exists</h2>
+    </div>
+  </div>
+
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-icon">🛠</div>
+      <h3 class="pillar-title">Pragmatic Over Theory</h3>
+      <p class="pillar-desc">
+        We skip trivial "hello world" demos and focus on genuine production architecture, clean folder structures, robust security patterns, and testing.
+      </p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon">🎨</div>
+      <h3 class="pillar-title">Uncompromising UI Design</h3>
+      <p class="pillar-desc">
+        Great software deserves great interfaces. We show how to combine powerful Django backends with modern vanilla CSS, responsive layouts, and rich aesthetics.
+      </p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon">🚀</div>
+      <h3 class="pillar-title">Empowering Builders</h3>
+      <p class="pillar-desc">
+        Whether you are writing your first view or architecting a distributed web application, every guide is written with clarity, precision, and passion.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Get in Touch / Message Section -->
+<section class="container community-section">
+  <div class="community-card">
+    <div class="community-content">
+      <span class="badge badge-accent badge-glow">Get In Touch</span>
+      <h2 class="community-title" style="margin-top: 0.75rem;">Have a Question or Collaboration?</h2>
+      <p class="community-desc">
+        Feel free to drop a message, suggest article topics, or discuss Django engineering opportunities.
+      </p>
+
+      <form class="auth-form" onsubmit="event.preventDefault(); showToast('Message sent successfully! Ifran will get back to you soon. 💌', 'success'); this.reset();">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-control" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Email</label>
+          <input type="email" class="form-control" placeholder="name@domain.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Message</label>
+          <textarea class="form-control" rows="4" placeholder="Write your message here..." required style="resize: vertical;"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Send Message 🚀
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}DevPulse • Home - Engineering, Django & Modern UI Chronicles{% endblock %}
+
+{% block content %}
+<!-- Ambient Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-pill">
+      <span class="pill-dot"></span>
+      <span>Latest in Django 6, Web Design & Modern Engineering</span>
+    </div>
+
+    <h1 class="hero-title">
+      Crafting The Future of <span class="gradient-text">Code</span>, <span class="accent-text">Design</span> & Architecture
+    </h1>
+
+    <p class="hero-desc">
+      A curated technical journal dedicated to clean Python & Django systems, scalable web architecture, beautiful user interfaces, and hands-on developer growth.
+    </p>
+
+    <div class="hero-cta-group">
+      <a href="#articles" class="btn btn-primary">
+        <span>Explore Articles</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <a href="{% url 'about' %}" class="btn btn-secondary">
+        <span>Meet The Author</span>
+      </a>
+      <button onclick="showAlert()" class="btn btn-outline" type="button" title="Test interactive notification">
+        <span>⚡ Interactive Alert</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Story Spotlight Section -->
+<section class="container featured-section">
+  <div class="section-header">
+    <div>
+      <span class="badge badge-primary badge-glow">Spotlight Story</span>
+      <h2 class="section-title" style="margin-top: 0.5rem;">Editor's Pick</h2>
+    </div>
+    <span style="font-size: 0.9rem; color: var(--text-muted);">Updated Today</span>
+  </div>
+
+  <article class="featured-card">
+    <div class="featured-media">
+      <!-- User image integration with graceful fallback -->
+      <img src="{% static 'images/images.jpg' %}" 
+           alt="Django and Web Development Spotlight" 
+           class="featured-img" 
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="featured-fallback-art" style="display: none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+        <span>Engineering Spotlight</span>
+      </div>
+    </div>
+
+    <div class="featured-content">
+      <div class="post-meta-top">
+        <span class="badge badge-accent">{{ featured_post.tag|default:"Featured" }}</span>
+        <span class="post-read-time">⏱ {{ featured_post.read_time|default:"6 min read" }}</span>
+      </div>
+
+      <h3 class="featured-title">
+        <a href="#community">{{ featured_post.title|default:"Mastering Django 6: Building Scalable & Modern Web Applications" }}</a>
+      </h3>
+
+      <p class="featured-excerpt">
+        {{ featured_post.summary|default:"Explore the latest architecture paradigms, async ORM advancements, clean folder structures, and professional production patterns for modern Django projects." }}
+      </p>
+
+      <div class="author-meta">
+        <div class="author-avatar">IT</div>
+        <div class="author-info">
+          <h4>{{ featured_post.author|default:"Ifran Tuhin" }}</h4>
+          <p>{{ featured_post.date|default:"Oct 7, 2026" }} • {{ featured_post.category|default:"Django & Python" }}</p>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- Dynamic Filter and Article Feed Section -->
+<section id="articles" class="container" style="padding-top: 2rem;">
+  <div class="section-header">
+    <div>
+      <span class="badge badge-primary">Feed</span>
+      <h2 class="section-title" style="margin-top: 0.5rem;">Explore All Chronicles</h2>
+    </div>
+  </div>
+
+  <!-- Interactive Category Filter Pills -->
+  <div class="filter-wrapper">
+    <div class="category-filter" role="tablist" aria-label="Category Filter">
+      {% for category in categories %}
+        <button type="button" 
+                class="filter-btn {% if forloop.first %}active{% endif %}" 
+                data-category="{{ category }}"
+                role="tab">
+          {{ category }}
+        </button>
+      {% empty %}
+        <button type="button" class="filter-btn active" data-category="All">All</button>
+        <button type="button" class="filter-btn" data-category="Django & Python">Django & Python</button>
+        <button type="button" class="filter-btn" data-category="Frontend & UI">Frontend & UI</button>
+        <button type="button" class="filter-btn" data-category="AI & ML">AI & ML</button>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Responsive Post Grid -->
+  <div class="posts-grid" id="postsGrid">
+    {% for post in posts %}
+      <article class="post-card {{ post.accent_class|default:'card-1' }}" data-category="{{ post.category }}">
+        <div class="post-card-banner">
+          <div class="post-banner-accent"></div>
+          <div class="banner-badge">
+            <span class="badge badge-primary">{{ post.tag }}</span>
+          </div>
+        </div>
+
+        <div class="post-card-body">
+          <div class="post-card-meta">
+            <span>📂 {{ post.category }}</span>
+            <span>•</span>
+            <span>⏱ {{ post.read_time }}</span>
+          </div>
+
+          <h3 class="post-card-title">
+            <a href="#community">{{ post.title }}</a>
+          </h3>
+
+          <p class="post-card-excerpt">
+            {{ post.summary }}
+          </p>
+
+          <div class="post-card-footer">
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              {{ post.date }}
+            </div>
+            <a href="#community" class="read-more-link">
+              <span>Read Post</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Community & Quick Auth Form Section (Preserving user's form with modern UI) -->
+<section id="community" class="container community-section">
+  <div class="community-card">
+    <div class="community-content">
+      <span class="badge badge-accent badge-glow">Member Hub</span>
+      <h2 class="community-title" style="margin-top: 0.75rem;">
+        Join The <span class="gradient-text">DevPulse</span> Collective
+      </h2>
+      <p class="community-desc">
+        Unlock premium tutorials, architecture blueprints, direct community discussions, and insider tech case studies.
+      </p>
+
+      <!-- Preserved & Styled User Form -->
+      <form method="POST" action="{% url 'home' %}" class="auth-form" onsubmit="event.preventDefault(); showToast('Account processed! Welcome to DevPulse, ' + (this.name.value || 'friend') + '!', 'success');">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label class="form-label" for="id_name">Your Full Name</label>
+          <input type="text" 
+                 id="id_name" 
+                 name="name" 
+                 class="form-control" 
+                 placeholder="e.g. Ifran Tuhin" 
+                 required 
+                 autocomplete="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="id_email">Email Address</label>
+          <input type="email" 
+                 id="id_email" 
+                 name="email" 
+                 class="form-control" 
+                 placeholder="name@domain.com" 
+                 required 
+                 autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="id_password">Account Password</label>
+          <input type="password" 
+                 id="id_password" 
+                 name="password" 
+                 class="form-control" 
+                 placeholder="••••••••••••" 
+                 required 
+                 autocomplete="current-password" />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            <span>Access Member Portal</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

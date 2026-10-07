@@ -1,0 +1,85 @@
+{% load static %}
+<header class="site-header">
+  <div class="container nav-container">
+    <!-- Brand Logo -->
+    <a
+      href="{% url 'home' %}"
+      class="brand-logo"
+      aria-label="DevPulse Homepage"
+    >
+      <div class="logo-badge">⚡</div>
+      <span class="brand-text">Dev<span>Pulse</span></span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="desktop-nav" aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li>
+          <a
+            href="{% url 'home' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="{% url 'about' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+          >
+            About
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'home' %}#articles" class="nav-link"> Articles </a>
+        </li>
+        <li>
+          <a href="{% url 'home' %}#community" class="nav-link"> Community </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Nav Controls (Theme switcher, CTA, Mobile hamburger) -->
+    <div class="nav-actions">
+      <!-- Dark/Light Theme Switcher -->
+      <button
+        id="themeToggle"
+        class="theme-toggle-btn"
+        type="button"
+        aria-label="Toggle Dark/Light Theme"
+        title="Toggle Dark/Light Theme"
+      >
+        <span id="themeIcon">☀️</span>
+      </button>
+
+      <!-- CTA Button -->
+      <a href="{% url 'home' %}#community" class="btn-cta">
+        <span>Join Free</span>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        id="mobileNavToggle"
+        class="mobile-toggle"
+        type="button"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+</header>
